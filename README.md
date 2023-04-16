@@ -16,16 +16,17 @@ W tym celu można skorzystać z algorytmu [sklearn.cluster.KMeans](https://sciki
 
 2. Ustalenie rozmyć funkcji radialnych (metoda ``init_sigmas(X, y)``).  
 Wartość rozmycia $\sigma_k$ dla każdej funkcji radialnej jest dobierana jako średnia odległość między wektorami treningowymi związanymi z centrum $k$
+
 $$
-\sigma_k=\frac{1}{m} \sum_{i=1}^m\left\|x_i-\mu_k\right\|
-$$  
+\sigma_k=\frac{1}{m} \sum_{i=1}^m\left\||\mathbf{x}_i-\boldsymbol{\mu}_k\right\||
+$$
+
 Wskazówka: 1) metoda ``predict(X)`` klasy ``KMeans`` zwraca wektor określający przynależność do centrów. 2) funkcja [scipy.spatial.distance.pdist](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html) oblicza odległości między wierszami macierzy.
 
 3. Uczenie wag warstwy wyjściowej (metoda ``update_weights(X, y)``).  
 Wagi i wyrazy wolne ustalone na podstawie rozwiązania układu równań $\mathbf{W}\mathbf{Z} + \mathbf{b}= \mathbf{y}$.
 
 $$ \mathbf{W}' = \left( \mathbf{Z}'^T \mathbf{Z'}\right)^{-1}\mathbf{Z'}\mathbf{y} $$
-
 
 Zastosuj uzyskany algorytm RBF do klasyfikacji zbioru danych ``digits`` (zob. [sklearn.datasets.load_digits](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html)).
 
